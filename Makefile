@@ -8,7 +8,8 @@
 SRC	=       src/matchstick.c			\
 		src/mapping.c				\
 		src/game.c				\
-		src/error.c
+		src/error.c				\
+		src/ai.c
 
 MAIN 	=	src/main.c
 

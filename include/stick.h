@@ -70,4 +70,7 @@ int is_a_number(char *buff);
 int is_possible(char *buff);
 int are_they_all_ok(stick_t *mst, char *buff);
 
+/*ai.c*/
+char **ai_turn(char **map, int max);
+
 #endif

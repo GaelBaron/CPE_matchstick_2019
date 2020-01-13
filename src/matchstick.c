@@ -47,9 +47,7 @@ int is_game_end(char **map)
                 nb++;
         }
     if (nb == 0)
-        return (PLAYER_WIN);
-    if (nb == 1)
-        return (AI_WIN);
+        return (1);
     return (NOT_END);
 }
 
@@ -81,6 +79,13 @@ int matchstick(int map_size, int max_stick_taken)
         mst->map = game_fight(mst);
         if (!mst->map)
             return (0);
+        if (is_game_end(mst->map))
+            return (1);
+        mst->map = ai_turn(mst->map, max_stick_taken);
+        if (!mst->map)
+            return (0);
+        if (is_game_end(mst->map))
+            return (2);
     }
     return (0);
 }
