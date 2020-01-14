@@ -14,7 +14,7 @@ int main(int ac, char **av)
     ret = matchstick(my_atoi(av[1]), my_atoi(av[2]));
     if (ret == 1)
         my_putstr("LOL I BEAT YOU U BAD HAHAHAHAHA\n");
-    if (ret == 2
+    if (ret == 2)
         my_putstr("You won for this time... BUT I M STILL BETTER THAN YOU\n");
     return (ret);
 }
