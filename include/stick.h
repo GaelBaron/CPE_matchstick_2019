@@ -58,7 +58,7 @@ void print_interface(char **map);
 int matchstick(int map_size, int max_stick_taken);
 
 /*error.c*/
-int too_big(stick_t *mst, char *buff);
+int too_big(int nb, stick_t *mst);
 int too_small_line(stick_t *mst, char *buff, int line);
 int are_sticks_all_ok(stick_t *mst, char *buff, int line);
 int stick_errors(stick_t *mst, int line);

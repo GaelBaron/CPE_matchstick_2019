@@ -19,11 +19,10 @@ int lines_errors(stick_t *mst)
     err = are_they_all_ok(mst, buff);
     if (err != 0)
         while (err != 0) {
+            print_error(err);
             getline(&buff, &len, stdin);
             buff = delete_n(buff);
-            my_putstr(buff);
             err = are_they_all_ok(mst, buff);
-            print_error(err);
         }
     return (my_atoi(buff));
 }

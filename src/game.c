@@ -23,7 +23,7 @@ void print_error(int err)
     if (err == 0)
         return;
     if (err == NOT_A_NB || err == CANT_MATCH)
-          my_putstr("Error: invalid input (positiven numbers expected)");
+          my_putstr("Error: invalid input (positive numbers expected)");
     if (err == TOO_BIG)
         my_putstr("Error: This line doesn't exist");
     my_putstr("\nLine: ");
@@ -52,7 +52,7 @@ int are_they_all_ok(stick_t *mst, char *buff)
         return (NOT_A_NB);
     if (!is_possible(buff))
         return (CANT_MATCH);
-    if (!too_big)
+    if (!too_big(my_atoi(buff), mst))
         return (TOO_BIG);
     return (0);
 }

@@ -7,6 +7,20 @@
 
 #include "../include/stick.h"
 
+int too_big(int nb, stick_t *mst)
+{
+    int nbs = 0;
+
+    if (nb > mst->map_size)
+        return (0);
+    for (int i = 0; mst->map[nb][i]; i++)
+        if (mst->map[nb][i] == '|')
+            nbs++;
+    if (nbs == 0)
+        return (0);
+    return (1);
+}
+
 int main(int ac, char **av)
 {
     int ret = 0;
