@@ -25,6 +25,12 @@ int main(int ac, char **av)
 {
     int ret = 0;
 
+    if (ac != 3)
+        return (84);
+    if (!is_a_number(av[1]) || !is_a_number(av[2]))
+        return (84);
+    if (my_atoi(av[1]) <= 0 || my_atoi(av[2]) <= 0)
+        return (84);
     ret = matchstick(my_atoi(av[1]), my_atoi(av[2]));
     if (ret == 1)
         my_putstr("LOL I BEAT YOU U BAD HAHAHAHAHA\n");
