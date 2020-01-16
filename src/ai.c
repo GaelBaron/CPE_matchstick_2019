@@ -66,10 +66,11 @@ char **ai_turn(char **map, int max)
         my_putchar('\n');
     }
     my_putstr("\nAI's turn...\n");
-    for (; map[line][first_stick] != '|'
-            && map[line][first_stick]; first_stick++);
+    for (int i = 0; map[line][i]; i++)
+        if (map[line][i] == '|')
+            first_stick = i;
     for (int i = 0; i < stick; i++)
-        map[line][first_stick + i] = ' ';
+        map[line][first_stick - i] = ' ';
     my_putstr("AI Removed ");
     my_put_nbr(stick);
     my_putstr(" match(es) from line ");
