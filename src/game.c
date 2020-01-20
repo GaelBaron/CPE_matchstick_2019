@@ -12,7 +12,7 @@ char *delete_n(char *buff)
     int i = 0;
     char *str = malloc(sizeof(char) * my_strlen(buff));
 
-    for (; buff[i] != '\n'; i++)
+    for (; buff[i] != '\n' && buff[i]; i++)
         str[i] = buff[i];
     str[i] = '\0';
     return (str);
