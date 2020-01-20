@@ -7,6 +7,15 @@
 
 #include "../include/stick.h"
 
+void split_bigger(int *tmp, int *tmp_l, char **map, int max)
+{
+    for (int i = 0; map[i]; i++)
+        if (line_nb(map[i]) > *tmp) {
+            *tmp = line_nb(map[i]);
+            *tmp_l = i;
+        }
+}
+
 int too_big(int nb, stick_t *mst)
 {
     int nbs = 0;

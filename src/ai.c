@@ -23,11 +23,7 @@ int bigger(char **map, int max)
     int tmp_l = 0;
 
     for (; max >= 0; max--) {
-        for (int i = 0; map[i]; i++)
-            if (line_nb(map[i]) > tmp) {
-                tmp = line_nb(map[i]);
-                tmp_l = i;
-            }
+        split_bigger(&tmp, &tmp_l, map, max);
         if (tmp >= max)
             return (tmp_l);
     }
@@ -51,6 +47,16 @@ int number(char **map, int max)
     return (-84);
 }
 
+char **ai_print(int line, int stick, char **map)
+{
+    my_putstr("AI Removed ");
+    my_put_nbr(stick);
+    my_putstr(" match(es) from line ");
+    my_put_nbr(line);
+    my_putchar('\n');
+    return (map);
+}
+
 char **ai_turn(char **map, int max)
 {
     int line = bigger(map, max);
@@ -71,10 +77,5 @@ char **ai_turn(char **map, int max)
             first_stick = i;
     for (int i = 0; i < stick; i++)
         map[line][first_stick - i] = ' ';
-    my_putstr("AI Removed ");
-    my_put_nbr(stick);
-    my_putstr(" match(es) from line ");
-    my_put_nbr(line);
-    my_putchar('\n');
-    return (map);
+    return (ai_print(line, stick, map));
 }

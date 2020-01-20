@@ -73,4 +73,7 @@ int are_they_all_ok(stick_t *mst, char *buff);
 /*ai.c*/
 char **ai_turn(char **map, int max);
 
+void split_bigger(int *tmp, int *tmp_l, char **map, int max);
+int line_nb(char *str);
+
 #endif
