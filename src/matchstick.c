@@ -13,14 +13,15 @@ int lines_errors(stick_t *mst)
     size_t len = 0;
     int err = 0;
 
-    if (getline(&buff, &len, stdin) == -1)
+    if (getline(&buff, &len, stdin) <= -1)
         return (-84);
     buff = delete_n(buff);
     err = are_they_all_ok(mst, buff);
     if (err != 0)
         while (err != 0) {
             print_error(err);
-            getline(&buff, &len, stdin);
+            if (getline(&buff, &len, stdin) <= -1)
+                return (-84);
             buff = delete_n(buff);
             err = are_they_all_ok(mst, buff);
         }

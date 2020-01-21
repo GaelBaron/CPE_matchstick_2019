@@ -39,7 +39,7 @@ int stick_errors(stick_t *mst, int line)
     size_t len = 0;
     int err = 0;
 
-    if (getline(&buff, &len, stdin) == -1)
+    if (getline(&buff, &len, stdin) <= -1)
         return (-84);
     buff = delete_n(buff);
     err = are_sticks_all_ok(mst, buff, line);
@@ -47,7 +47,8 @@ int stick_errors(stick_t *mst, int line)
         while (err != 0) {
             my_putstr("Error: Invalid input (Positive number expected)");
             my_putstr("\nMatch: ");
-            getline(&buff, &len, stdin);
+            if (getline(&buff, &len, stdin) <= -1)
+                return (-84);
             buff = delete_n(buff);
             err = are_sticks_all_ok(mst, buff, line);
         }
