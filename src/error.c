@@ -33,6 +33,37 @@ int are_sticks_all_ok(stick_t *mst, char *buff, int line)
     return (0);
 }
 
+int split_rec(stick_t *mst, int *line, int *stick_nb)
+{
+    int err_sec = 1;
+
+    my_putstr("Matches: ");
+    *stick_nb = stick_errors(mst, *line);
+    if (*stick_nb == -85)
+        return (-85);
+    if (*stick_nb == -84) {
+        my_putstr("Error: invalid input (positive number expected)\n");
+        recursive_asking(mst, line, stick_nb);
+        return (0);
+    }
+}
+
+int recursive_asking(stick_t *mst, int *line, int *stick_nb)
+{
+    int err = 1;
+
+    my_putstr("Line: ");
+    *line = lines_errors(mst);
+    if (*line == -85)
+        return (-85);
+    if (*line == -84) {
+        my_putstr("Error: invalid input (positive number expected)\n");
+        recursive_asking(mst, line, stick_nb);
+        return (0);
+    }
+    return (split_rec(mst, line, stick_nb));
+}
+
 int stick_errors(stick_t *mst, int line)
 {
     char *buff = NULL;
@@ -40,17 +71,10 @@ int stick_errors(stick_t *mst, int line)
     int err = 0;
 
     if (getline(&buff, &len, stdin) <= -1)
-        return (-84);
+        return (-85);
     buff = delete_n(buff);
     err = are_sticks_all_ok(mst, buff, line);
     if (err != 0)
-        while (err != 0) {
-            my_putstr("Error: Invalid input (Positive number expected)");
-            my_putstr("\nMatch: ");
-            if (getline(&buff, &len, stdin) <= -1)
-                return (-84);
-            buff = delete_n(buff);
-            err = are_sticks_all_ok(mst, buff, line);
-        }
+        return (-84);
     return (my_atoi(buff));
 }

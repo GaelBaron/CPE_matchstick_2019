@@ -14,17 +14,11 @@ int lines_errors(stick_t *mst)
     int err = 0;
 
     if (getline(&buff, &len, stdin) <= -1)
-        return (-84);
+        return (-85);
     buff = delete_n(buff);
     err = are_they_all_ok(mst, buff);
     if (err != 0)
-        while (err != 0) {
-            print_error(err);
-            if (getline(&buff, &len, stdin) <= -1)
-                return (-84);
-            buff = delete_n(buff);
-            err = are_they_all_ok(mst, buff);
-        }
+        return (-84);
     return (my_atoi(buff));
 }
 
@@ -34,7 +28,7 @@ void print_interface(char **map)
         my_putstr(map[i]);
         my_putchar('\n');
     }
-    my_putstr("\nYour turn:\nLine: ");
+    my_putstr("\nYour turn:\n");
 }
 
 int is_game_end(char **map)
@@ -57,12 +51,8 @@ char **game_fight(stick_t *mst)
     int stick_nb = 0;
 
     print_interface(mst->map);
-    line = lines_errors(mst);
-    if (line == -84)
-        return (NULL);
-    my_putstr("Matches: ");
-    stick_nb = stick_errors(mst, line);
-    if (stick_nb == -84)
+    recursive_asking(mst, &line, &stick_nb);
+    if (line == -85 || stick_nb == -85)
         return (NULL);
     mst->map = player_turn(mst->map, line, stick_nb);
     return (mst->map);

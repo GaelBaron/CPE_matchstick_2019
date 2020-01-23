@@ -76,4 +76,7 @@ char **ai_turn(char **map, int max);
 void split_bigger(int *tmp, int *tmp_l, char **map, int max);
 int line_nb(char *str);
 
+int lines_errors(stick_t *mst);
+int recursive_asking(stick_t *mst, int *line, int *stick_nb);
+
 #endif

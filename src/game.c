@@ -18,17 +18,6 @@ char *delete_n(char *buff)
     return (str);
 }
 
-void print_error(int err)
-{
-    if (err == 0)
-        return;
-    if (err == NOT_A_NB || err == CANT_MATCH)
-          my_putstr("Error: invalid input (positive numbers expected)");
-    if (err == TOO_BIG)
-        my_putstr("Error: This line doesn't exist");
-    my_putstr("\nLine: ");
-}
-
 int is_a_number(char *buff)
 {
     for (int i = 0; buff[i]; i++)
