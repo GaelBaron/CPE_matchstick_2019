@@ -54,6 +54,10 @@ char **ai_print(int line, int stick, char **map)
     my_putstr(" match(es) from line ");
     my_put_nbr(line);
     my_putchar('\n');
+    for (int i = 0; map[i]; i++) {
+        my_putstr(map[i]);
+        my_putchar('\n');
+    }
     return (map);
 }
 

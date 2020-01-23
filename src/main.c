@@ -42,9 +42,9 @@ int main(int ac, char **av)
         return (84);
     ret = matchstick(my_atoi(av[1]), my_atoi(av[2]));
     if (ret == 1)
-        my_putstr("LOL I BEAT YOU U BAD HAHAHAHAHA\n");
+        my_putstr("You lost, too bad...\n");
     if (ret == 2)
-        my_putstr("You won for this time... BUT I M STILL BETTER THAN YOU\n");
+        my_putstr("I lost... snif... but I'll get you next time !!\n");
     return (ret);
 }
 
