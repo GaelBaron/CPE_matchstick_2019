@@ -18,7 +18,7 @@ int lines_errors(stick_t *mst)
     buff = delete_n(buff);
     err = are_they_all_ok(mst, buff);
     if (err != 0)
-        return (-84);
+        return (err);
     return (my_atoi(buff));
 }
 

@@ -23,13 +23,15 @@ int too_small_line(stick_t *mst, char *buff, int line)
 int are_sticks_all_ok(stick_t *mst, char *buff, int line)
 {
     if (!is_a_number(buff))
-        return (NOT_A_NB);
+        return (-86);
     if (!too_small_line(mst, buff, line))
-        return (TOO_SMALL);
-    if (my_atoi(buff) <= 0)
-        return (NOT_A_NB);
+        return (-87);
+    if (my_atoi(buff) < 0)
+        return (-88);
+    if (my_atoi(buff) == 0)
+        return (-89);
     if (my_atoi(buff) > mst->max_stick_taken)
-        return (NOT_A_NB);
+        return (-90);
     return (0);
 }
 
@@ -41,8 +43,8 @@ int split_rec(stick_t *mst, int *line, int *stick_nb)
     *stick_nb = stick_errors(mst, *line);
     if (*stick_nb == -85)
         return (-85);
-    if (*stick_nb == -84) {
-        my_putstr("Error: invalid input (positive number expected)\n");
+    if (*stick_nb < -85) {
+        print_error(*stick_nb, mst);
         recursive_asking(mst, line, stick_nb);
         return (0);
     }
@@ -56,8 +58,8 @@ int recursive_asking(stick_t *mst, int *line, int *stick_nb)
     *line = lines_errors(mst);
     if (*line == -85)
         return (-85);
-    if (*line == -84) {
-        my_putstr("Error: invalid input (positive number expected)\n");
+    if (*line < -85) {
+        print_error(*line, mst);
         recursive_asking(mst, line, stick_nb);
         return (0);
     }
@@ -75,6 +77,6 @@ int stick_errors(stick_t *mst, int line)
     buff = delete_n(buff);
     err = are_sticks_all_ok(mst, buff, line);
     if (err != 0)
-        return (-84);
+        return (err);
     return (my_atoi(buff));
 }

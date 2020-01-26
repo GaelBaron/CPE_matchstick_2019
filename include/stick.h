@@ -65,7 +65,7 @@ int stick_errors(stick_t *mst, int line);
 
 /*game.c*/
 char *delete_n(char *buff);
-void print_error(int err);
+void print_error(int err, stick_t *mst);
 int is_a_number(char *buff);
 int is_possible(char *buff);
 int are_they_all_ok(stick_t *mst, char *buff);
