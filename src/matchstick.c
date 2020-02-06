@@ -50,7 +50,6 @@ char **game_fight(stick_t *mst)
     int line = 0;
     int stick_nb = 0;
 
-    print_interface(mst->map);
     recursive_asking(mst, &line, &stick_nb);
     if (line == -85 || stick_nb == -85)
         return (NULL);
@@ -65,6 +64,7 @@ int matchstick(int map_size, int max_stick_taken)
     mst->map_size = map_size;
     mst->max_stick_taken = max_stick_taken;
     mst->map = mapping(map_size + 1);
+    print_interface(mst->map);
     while (!is_game_end(mst->map)) {
         mst->map = game_fight(mst);
         if (!mst->map)
